@@ -1,5 +1,5 @@
-function App() {
-  return <div data-testid="app-root"></div>;
-}
+import { Layout } from '@/app/layout';
 
-export default App;
+export const App = () => {
+  return <Layout />;
+};

@@ -20,16 +20,12 @@ const config: Config.InitialOptions = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
-
   transform: {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
-
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-
   transformIgnorePatterns: ['/node_modules/(?!(@mui|@emotion|react-redux|@testing-library))'],
 };
 
