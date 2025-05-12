@@ -7,7 +7,7 @@ import {
 } from '@/app/config/constants';
 import { SideBarList } from './SideBarList';
 import { SideBarContext } from './SideBarContext';
-import type { DrawerStateProps } from '@/types';
+import type { DrawerStateProps } from '@/shared/types';
 
 export const SideBar = ({ isOpened }: DrawerStateProps) => {
   return (

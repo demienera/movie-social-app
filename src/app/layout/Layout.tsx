@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router';
 import { Header } from '@widgets/Header';
 import { SideBar } from '@/widgets/SideBar';
 import Box from '@mui/material/Box';
+import { AppRouter } from '../router/AppRouter';
 
 export const Layout = () => {
   const [isOpened, setIsOpened] = useState(true);
@@ -16,7 +16,7 @@ export const Layout = () => {
       <Box sx={{ display: 'flex' }}>
         <SideBar isOpened={isOpened} />
         <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
-          <Outlet />
+          <AppRouter />
         </Box>
       </Box>
     </>

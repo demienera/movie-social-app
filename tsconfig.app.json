@@ -8,13 +8,10 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["app/*"],
-      "@components/*": ["components/*"],
+      "@entities/*": ["entities/*"],
       "@pages/*": ["pages/*"],
       "@features/*": ["features/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"],
-      "@api/*": ["api/*"],
-      "@hooks/*": ["hooks/*"],
+      "@shared/*": ["shared/*"],
       "@widgets/*": ["widgets/*"]
     },
     "types": ["jest", "node", "@testing-library/jest-dom"],

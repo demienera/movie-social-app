@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Container } from '@mui/material';
 import { HeaderRight } from './HeaderRight';
-import type { DrawerStateProps } from '@/types';
+import type { DrawerStateProps } from '@/shared/types';
 import { HeaderLeft } from './HeaderLeft';
 
 export const Header = ({ toggleDrawer, isOpened }: DrawerStateProps) => {

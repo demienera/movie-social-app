@@ -5,7 +5,7 @@ export const UserMenu = () => {
   return (
     <Button
       component={NavLink}
-      to={'/profile'}
+      to={'/login'}
       sx={{
         borderColor: '#fff',
         color: '#fff',
