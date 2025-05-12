@@ -1,5 +1,5 @@
-import { Logo } from '@/components/Logo/Logo';
-import type { DrawerStateProps } from '@/types';
+import { Logo } from '@/shared/ui/Logo/Logo';
+import type { DrawerStateProps } from '@/shared/types';
 import { Box, IconButton } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
