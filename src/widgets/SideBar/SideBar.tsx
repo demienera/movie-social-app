@@ -15,7 +15,7 @@ export const SideBar = ({ isOpened }: DrawerStateProps) => {
       <Drawer
         variant="permanent"
         open={isOpened}
-        sx={{
+        sx={theme => ({
           width: isOpened ? drawerWidthOpen : drawerWidthClosed,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {
@@ -26,12 +26,12 @@ export const SideBar = ({ isOpened }: DrawerStateProps) => {
             justifyContent: 'space-between',
             height: 'calc(100vh - 64px)',
             width: isOpened ? drawerWidthOpen : drawerWidthClosed,
-            backgroundColor: '#181818',
-            color: '#fff',
+            background: theme.custom.sidebar,
+            color: theme.palette.text.primary,
             overflowX: 'hidden',
             transition: 'width 0.3s',
           },
-        }}
+        })}
       >
         <SideBarList items={SIDEBAR_ITEMS} />
         <SideBarList items={SIDEBAR_ITEMS_FOOTER} />

@@ -6,14 +6,13 @@ export const UserMenu = () => {
     <Button
       component={NavLink}
       to={'/login'}
-      sx={{
-        borderColor: '#fff',
-        color: '#fff',
+      sx={theme => ({
+        color: theme.palette.text.primary,
         '&:hover': {
           backgroundColor: 'rgba(235, 5, 89, 0.06)',
-          color: '#eb0559',
+          color: theme.custom.colorAccent,
         },
-      }}
+      })}
     >
       Войти
     </Button>

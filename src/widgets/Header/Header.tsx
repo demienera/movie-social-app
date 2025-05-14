@@ -5,7 +5,7 @@ import { HeaderLeft } from './HeaderLeft';
 
 export const Header = ({ toggleDrawer, isOpened }: DrawerStateProps) => {
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: '#1E1E1E' }}>
+    <AppBar position="sticky" sx={theme => ({ background: theme.custom.header })}>
       <Container disableGutters maxWidth={false} sx={{ px: 2 }}>
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <HeaderLeft toggleDrawer={toggleDrawer} isOpened={isOpened} />
