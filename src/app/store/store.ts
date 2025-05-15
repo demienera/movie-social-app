@@ -4,8 +4,11 @@ import {
   useSelector as selectorHook,
   type TypedUseSelectorHook,
 } from 'react-redux';
+import theme from '@/features/theme/model/themeSlice';
 
-export const rootReducer = combineReducers({});
+export const rootReducer = combineReducers({
+  theme,
+});
 
 const store = configureStore({
   reducer: rootReducer,

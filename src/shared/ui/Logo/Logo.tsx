@@ -8,16 +8,16 @@ export const Logo = () => {
       noWrap
       component="a"
       href="/"
-      sx={{
+      sx={theme => ({
         mr: 2,
         display: { xs: 'none', md: 'flex' },
         alignItems: 'center',
         fontFamily: 'monospace',
         fontWeight: 700,
         letterSpacing: '.3rem',
-        color: 'inherit',
+        color: theme.palette.text.primary,
         textDecoration: 'none',
-      }}
+      })}
     >
       <LocalMoviesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
       LOGO

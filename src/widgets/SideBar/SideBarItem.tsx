@@ -10,7 +10,7 @@ export const SideBarItem = ({ label, path, icon }: SideBarItemProps) => {
       <ListItemButton
         component={NavLink}
         to={path}
-        sx={{
+        sx={theme => ({
           gap: '20px',
           pl: 3,
           minHeight: '48px',
@@ -19,14 +19,16 @@ export const SideBarItem = ({ label, path, icon }: SideBarItemProps) => {
           },
           '&:hover': {
             backgroundColor: '#2a2a2a',
-            color: '#eb0559',
+            color: theme.custom.colorAccent,
             '& .MuiListItemIcon-root': {
-              color: '#eb0559',
+              color: theme.custom.colorAccent,
             },
           },
-        }}
+        })}
       >
-        <ListItemIcon sx={{ minWidth: '20px', color: '#fff' }}>{icon}</ListItemIcon>
+        <ListItemIcon sx={theme => ({ minWidth: '20px', color: theme.palette.text.primary })}>
+          {icon}
+        </ListItemIcon>
         {isOpened && <ListItemText primary={label} sx={{ minWidth: '116px' }} />}
       </ListItemButton>
     </ListItem>

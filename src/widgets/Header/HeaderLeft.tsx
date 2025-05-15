@@ -8,14 +8,14 @@ export const HeaderLeft = ({ toggleDrawer, isOpened }: DrawerStateProps) => (
   <Box sx={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
     <IconButton
       onClick={toggleDrawer}
-      sx={{
+      sx={theme => ({
         p: 1,
-        color: '#fff',
+        color: theme.palette.text.primary,
         '&:hover': {
           backgroundColor: '#2A2A2A',
-          color: '#eb0559',
+          color: theme.custom.colorAccent,
         },
-      }}
+      })}
     >
       {isOpened ? <ChevronLeftIcon /> : <MenuIcon />}
     </IconButton>

@@ -1,15 +1,15 @@
 import { Provider } from 'react-redux';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import type { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import store from '../store/store';
-import { theme } from '../config/theme/theme';
-import type { ProvidersProps } from './types';
+import { ThemeProviderWrapper } from './ThemeProvidersWrapper';
 
-export const Providers = ({ children }: ProvidersProps) => (
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>{children}</BrowserRouter>
-    </ThemeProvider>
-  </Provider>
-);
+export const Providers = ({ children }: { children: ReactNode }) => {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+      </BrowserRouter>
+    </Provider>
+  );
+};
