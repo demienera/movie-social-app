@@ -7,6 +7,7 @@ declare module '@mui/material/styles' {
       header: string;
       sidebar: string;
       colorAccent: string;
+      buttonHoverBg?: string;
     };
   }
 
@@ -15,6 +16,7 @@ declare module '@mui/material/styles' {
       header?: string;
       sidebar?: string;
       colorAccent?: string;
+      buttonHoverBg?: string;
     };
   }
 }

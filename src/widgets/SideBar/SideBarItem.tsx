@@ -18,7 +18,7 @@ export const SideBarItem = ({ label, path, icon }: SideBarItemProps) => {
             backgroundColor: 'action.selected',
           },
           '&:hover': {
-            backgroundColor: '#2a2a2a',
+            backgroundColor: theme.custom.buttonHoverBg,
             color: theme.custom.colorAccent,
             '& .MuiListItemIcon-root': {
               color: theme.custom.colorAccent,
