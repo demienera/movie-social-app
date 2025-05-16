@@ -7,7 +7,6 @@ const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 const AboutPage = lazy(() => import('@/pages/About'));
 const RegisterPage = lazy(() => import('@/pages/Register'));
 const MoviePage = lazy(() => import('@/pages/Movie'));
-const SupportPage = lazy(() => import('@/pages/Support'));
 const FeedPage = lazy(() => import('@/pages/Feed'));
 const ProfileEditPage = lazy(() => import('@/pages/ProfileEdit'));
 const SettingsPage = lazy(() => import('@/pages/ProfileSettings'));
@@ -26,6 +25,5 @@ export const routes = [
   { path: '/reset', element: <ResetPasswordPage /> },
   { path: '/feed', element: <FeedPage /> },
   { path: '/movie/:id', element: <MoviePage /> },
-  { path: '/support', element: <SupportPage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
