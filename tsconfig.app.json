@@ -8,13 +8,10 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["app/*"],
-      "@components/*": ["components/*"],
+      "@entities/*": ["entities/*"],
       "@pages/*": ["pages/*"],
       "@features/*": ["features/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"],
-      "@api/*": ["api/*"],
-      "@hooks/*": ["hooks/*"],
+      "@shared/*": ["shared/*"],
       "@widgets/*": ["widgets/*"]
     },
     "types": ["jest", "node", "@testing-library/jest-dom"],
@@ -34,7 +31,13 @@
     "noUncheckedSideEffectImports": true,
     "isolatedModules": true
   },
-  "include": ["src", "jest.config.ts", "**/*.test.ts", "**/*.test.tsx"],
+  "include": [
+    "src",
+    "jest.config.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "src/shared/types/vite-env.d.ts"
+  ],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {
