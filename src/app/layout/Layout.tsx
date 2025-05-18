@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Header } from '@widgets/Header';
 import { SideBar } from '@/widgets/SideBar';
-import Box from '@mui/material/Box';
 import { AppRouter } from '../router/AppRouter';
+import { LayoutWrapper, MainContent } from './styled';
 
 export const Layout = () => {
   const [isOpened, setIsOpened] = useState(true);
@@ -10,15 +10,18 @@ export const Layout = () => {
     setIsOpened(prev => !prev);
   };
 
+  const handleClose = () => {
+    setIsOpened(false);
+  };
   return (
     <>
       <Header isOpened={isOpened} toggleDrawer={toggleDrawer} />
-      <Box sx={{ display: 'flex' }}>
-        <SideBar isOpened={isOpened} />
-        <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
+      <LayoutWrapper>
+        <SideBar isOpened={isOpened} onClose={handleClose} />
+        <MainContent>
           <AppRouter />
-        </Box>
-      </Box>
+        </MainContent>
+      </LayoutWrapper>
     </>
   );
 };

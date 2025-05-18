@@ -3,21 +3,20 @@ import type { PaletteOptions } from '@mui/material';
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   background: {
-    default: '#121212',
-    paper: '#1e1e1e',
+    default: '#161617',
   },
   text: {
-    primary: '#ffffff',
+    primary: '#c9cccf',
   },
 };
 
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   background: {
-    default: '#ffffff',
-    paper: '#f5f5f5',
+    default: '#ededed',
   },
   text: {
-    primary: '#000000',
+    primary: '#333333',
+    secondary: '#fff',
   },
 };

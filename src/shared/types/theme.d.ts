@@ -4,19 +4,23 @@ import '@mui/material/styles';
 declare module '@mui/material/styles' {
   interface Theme {
     custom: {
-      header: string;
-      sidebar: string;
-      colorAccent: string;
-      buttonHoverBg?: string;
+      colorActive: string;
+      headerBg: string;
+      sidebarBg: string;
+      accentMain: string;
+      accentHover: string;
+      buttonHoverBg: string;
     };
   }
 
   interface ThemeOptions {
     custom?: {
-      header?: string;
-      sidebar?: string;
-      colorAccent?: string;
+      headerBg?: string;
+      sidebarBg?: string;
+      accentMain?: string;
+      accentHover?: string;
       buttonHoverBg?: string;
+      colorActive?: string;
     };
   }
 }

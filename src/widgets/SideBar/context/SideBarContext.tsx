@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { SideBarContextProp } from './types';
+import type { SideBarContextProp } from '../types';
 
 export const SideBarContext = createContext<SideBarContextProp | null>(null);
 
