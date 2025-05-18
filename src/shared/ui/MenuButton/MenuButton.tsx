@@ -1,6 +1,7 @@
-import { IconButton } from '@mui/material';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { Tooltip } from '@mui/material';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MenuIcon from '@mui/icons-material/Menu';
+import { MenuToggleButton } from './styled';
 
 interface MenuButtonProps {
   onClick?: () => void;
@@ -8,17 +9,9 @@ interface MenuButtonProps {
 }
 
 export const MenuButton = ({ onClick, isOpened }: MenuButtonProps) => (
-  <IconButton
-    onClick={onClick}
-    sx={theme => ({
-      p: 1,
-      color: theme.palette.text.primary,
-      '&:hover': {
-        backgroundColor: theme.custom.buttonHoverBg,
-        color: theme.custom.colorAccent,
-      },
-    })}
-  >
-    {isOpened ? <ChevronLeftIcon /> : <MenuIcon />}
-  </IconButton>
+  <Tooltip title="Открыть/скрыть меню" arrow>
+    <MenuToggleButton onClick={onClick}>
+      {isOpened ? <MenuOpenIcon /> : <MenuIcon />}
+    </MenuToggleButton>
+  </Tooltip>
 );

@@ -15,6 +15,7 @@ const ResetPasswordPage = lazy(() => import('@/pages/ResetPassword'));
 
 export const routes = [
   { path: '/', element: <HomePage /> },
+  { path: '/new', element: <HomePage /> },
   { path: '/profile', element: <ProfilePage /> },
   { path: '/profile/edit', element: <ProfileEditPage /> },
   { path: '/settings', element: <SettingsPage /> },

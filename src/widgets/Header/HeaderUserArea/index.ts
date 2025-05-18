@@ -1,0 +1,1 @@
+export { HeaderUserArea } from './HeaderUserArea';

@@ -4,10 +4,12 @@ export type SideBarItemProps = {
   label: string;
   path: string;
   icon: ReactNode;
+  onClose?: () => void;
 };
 
 export type SideBarListProp = {
   items: SideBarItemProps[];
+  onClose?: () => void;
 };
 
 export type SideBarContextProp = {

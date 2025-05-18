@@ -1,26 +1,13 @@
-import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
-import Typography from '@mui/material/Typography';
+import { Tooltip } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { LogoLink } from './styled';
 
 export const Logo = () => {
   return (
-    <Typography
-      variant="h6"
-      noWrap
-      component="a"
-      href="/"
-      sx={theme => ({
-        mr: 2,
-        display: { xs: 'none', md: 'flex' },
-        alignItems: 'center',
-        fontFamily: 'monospace',
-        fontWeight: 700,
-        letterSpacing: '.3rem',
-        color: theme.palette.text.primary,
-        textDecoration: 'none',
-      })}
-    >
-      <LocalMoviesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-      LOGO
-    </Typography>
+    <Tooltip title="Перейти на главную" arrow placement="right">
+      <LogoLink variant="h6" noWrap component={NavLink} to="/">
+        LOGO
+      </LogoLink>
+    </Tooltip>
   );
 };
