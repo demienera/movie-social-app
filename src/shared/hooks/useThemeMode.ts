@@ -15,19 +15,22 @@ type UseThemeModeProps = {
 export const useThemeMode = (): UseThemeModeProps => {
   const mode = useAppSelector(state => state.theme.mode);
   const dispatch = useAppDispatch();
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = useMemo(() => (mode === 'light' ? lightTheme : darkTheme), [mode]);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    if (typeof window === 'undefined') return;
 
+    const savedTheme = localStorage.getItem('theme');
     if (!savedTheme) {
       dispatch(setTheme(prefersDarkMode ? 'dark' : 'light'));
     }
   }, [dispatch, prefersDarkMode]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       dispatch(setTheme(e.matches ? 'dark' : 'light'));

@@ -13,4 +13,3 @@ export const SIDEBAR_ITEMS_FOOTER = [{ label: 'О проекте', path: '/about
 
 export const drawerWidthOpen = 250;
 export const drawerWidthClosed = 0;
-export const headerHeight = 64;
