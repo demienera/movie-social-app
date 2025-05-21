@@ -1,21 +1,26 @@
 import { Box, Drawer, type DrawerProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { headerHeight, drawerWidthOpen, drawerWidthClosed } from '@/app/config/constants';
+import { drawerWidthOpen, drawerWidthClosed } from '@/app/config/constants';
 
 interface StyledSideBarProps extends DrawerProps {
   isOpened?: boolean;
+  topOffset?: number;
+  topOffsetMobile?: number;
+  isMobile?: boolean;
 }
 
 export const AppDrawer = styled(Drawer, {
-  shouldForwardProp: prop => prop !== 'isOpened',
-})<StyledSideBarProps>(({ theme, isOpened }) => {
+  shouldForwardProp: (prop: string) =>
+    !['isOpened', 'topOffset', 'topOffsetMobile', 'isMobile'].includes(prop),
+})<StyledSideBarProps>(({ theme, isOpened, topOffset, topOffsetMobile, isMobile }) => {
+  const top = isMobile ? (topOffsetMobile ?? 64) : (topOffset ?? 64);
   const width = isOpened ? drawerWidthOpen : drawerWidthClosed;
 
   return {
     width,
     flexShrink: 0,
     '& .MuiDrawer-paper': {
-      top: headerHeight,
+      top,
       width,
       background: theme.custom.sidebarBg,
       color: theme.palette.text.primary,
@@ -25,11 +30,13 @@ export const AppDrawer = styled(Drawer, {
   };
 });
 
-export const DrawerContent = styled(Box)(() => ({
+export const DrawerContent = styled(Box, {
+  shouldForwardProp: prop => prop !== 'topOffset',
+})<{ topOffset?: number }>(({ topOffset = 64 }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   padding: '15px',
-  height: 'calc(100vh - 64px)',
+  height: `calc(100vh - ${topOffset}px)`,
   width: '100%',
 }));
