@@ -1,15 +1,22 @@
 import { Provider } from 'react-redux';
 import type { ReactNode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import store from '../store/store';
 import { ThemeProviderWrapper } from './ThemeProvidersWrapper';
 
-export const Providers = ({ children }: { children: ReactNode }) => {
+type ProvidersProps = {
+  children: ReactNode;
+  initialEntries?: string[];
+};
+
+export const Providers = ({ children, initialEntries }: ProvidersProps) => {
+  const Router = initialEntries ? MemoryRouter : BrowserRouter;
+  const routerProps = initialEntries ? { initialEntries } : {};
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router {...routerProps}>
         <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 };
