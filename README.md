@@ -34,6 +34,7 @@ Cоциальная сеть для киноманов. Пользователи
 - Material UI
 - Formik + Yup
 - React Testing Library + Jest
+- Storybook
 
 ---
 
