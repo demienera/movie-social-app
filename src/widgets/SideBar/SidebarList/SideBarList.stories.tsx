@@ -12,7 +12,7 @@ const items = [
 ];
 
 const meta = {
-  title: 'Widgets/SideBarList',
+  title: 'Widgets/SideBar/SideBarList',
   component: SideBarList,
   parameters: {
     layout: 'centered',
