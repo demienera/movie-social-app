@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Providers } from '@/app/providers/Providers';
 
 const meta = {
-  title: 'Widgets/SideBar',
+  title: 'Widgets/SideBar/Sidebar',
   component: SideBar,
   parameters: {
     layout: 'fullscreen',

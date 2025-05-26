@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
+import { ResetForm } from '@/features/auth/ui/ResetForm/ResetForm';
 
-const ResetPassworPage = () => <Box>Восстановить пароль</Box>;
+const ResetPassworPage = () => <ResetForm />;
 
 export default ResetPassworPage;

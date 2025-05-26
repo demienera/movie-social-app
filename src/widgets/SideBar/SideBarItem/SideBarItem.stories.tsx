@@ -4,7 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { SideBarItem } from './SideBarItem';
 
 const meta = {
-  title: 'Widgets/SideBarItem',
+  title: 'Widgets/SideBar/SideBarItem',
   component: SideBarItem,
   parameters: {
     layout: 'centered',
