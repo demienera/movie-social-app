@@ -5,14 +5,17 @@ import {
   registerSchema,
   type RegisterFormValues,
 } from '@/shared/validation/schemas/registerSchema';
-import { FormLayout } from '@shared/ui/FormLayout/FormLayout';
+import { FormLayout } from '@shared/ui/FormLayout';
 import { AuthFormLinks } from '../AuthFormLinks';
 import { AuthSubmitButton } from '../AuthSubmitButton';
+import { useNavigation } from '@/shared/hooks/useNavigation';
 import { registerInitialValues } from '../../constants';
 
 export const RegisterForm: FC = () => {
+  const { navigateByType } = useNavigation();
   const handleSubmit = (values: typeof registerInitialValues) => {
     console.log('registerForm submitted', values);
+    navigateByType('close');
   };
 
   return (

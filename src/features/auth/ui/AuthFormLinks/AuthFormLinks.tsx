@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { useModalNavigate } from '@/shared/hooks/useModalNavigate';
+import { PromptLink } from '@/shared/ui/PromptLink';
 import type { AuthFormLinksProps } from './types';
 import { LinkBox } from './styled';
-import { PromptLink } from '@/shared/ui/PromptLink/PromptLink';
 
 export const AuthFormLinks: FC<AuthFormLinksProps> = ({ variant }) => {
   const isLogin = variant === 'login';
@@ -13,7 +13,7 @@ export const AuthFormLinks: FC<AuthFormLinksProps> = ({ variant }) => {
   };
 
   const handleClickModalReset = () => {
-    modalNavigate('/reset');
+    modalNavigate('/reset-password');
   };
   return (
     <LinkBox>
