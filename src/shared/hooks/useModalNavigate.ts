@@ -4,8 +4,8 @@ export const useModalNavigate = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  return (to: string) => {
+  return (to: string, extraState: Record<string, unknown> = {}) => {
     const background = location.state?.backgroundLocation || location;
-    navigate(to, { state: { backgroundLocation: background } });
+    navigate(to, { state: { backgroundLocation: background, ...extraState } });
   };
 };

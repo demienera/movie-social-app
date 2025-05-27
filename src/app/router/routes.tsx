@@ -8,9 +8,10 @@ const MoviePage = lazy(() => import('@/pages/Movie'));
 const FeedPage = lazy(() => import('@/pages/Feed'));
 const ProfileEditPage = lazy(() => import('@/pages/ProfileEdit'));
 const SettingsPage = lazy(() => import('@/pages/ProfileSettings'));
-const ResetPage = lazy(() => import('@/pages/ResetPage'));
+const ResetPasswordPage = lazy(() => import('@/pages/ResetPasswordPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const ResetConfirmPage = lazy(() => import('@/pages/ResetConfirmPage'));
 
 export const mainRoutes = [
   { path: '/', element: <HomePage /> },
@@ -42,10 +43,18 @@ export const modalRoutes = [
     },
   },
   {
-    path: '/reset',
-    element: <ResetPage />,
+    path: '/reset-password',
+    element: <ResetPasswordPage />,
     modalProps: {
       title: 'Сбросить пароль',
+      showBack: true,
+    },
+  },
+  {
+    path: '/reset-password/confirm',
+    element: <ResetConfirmPage />,
+    modalProps: {
+      title: 'Новый пароль',
       showBack: true,
     },
   },

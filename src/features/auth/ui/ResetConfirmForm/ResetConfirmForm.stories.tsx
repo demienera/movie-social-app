@@ -1,10 +1,10 @@
-import { ResetForm } from './ResetForm';
+import { ResetConfirmForm } from './ResetConfirmForm';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Providers } from '@/app/providers/Providers';
 
 const meta = {
-  title: 'Features/Auth/ResetForm',
-  component: ResetForm,
+  title: 'Features/Auth/ResetConfirmForm',
+  component: ResetConfirmForm,
   parameters: {
     layout: 'centered',
   },
@@ -15,9 +15,9 @@ const meta = {
       </Providers>
     ),
   ],
-} satisfies Meta<typeof ResetForm>;
+} satisfies Meta<typeof ResetConfirmForm>;
 export default meta;
 
-type Story = StoryObj<typeof ResetForm>;
+type Story = StoryObj<typeof ResetConfirmForm>;
 
 export const Default: Story = {};

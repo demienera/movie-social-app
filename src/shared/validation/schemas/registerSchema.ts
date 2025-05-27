@@ -1,17 +1,17 @@
 import * as Yup from 'yup';
-
-const passwordRules = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+import { nameRules, passwordRules } from '../constants';
 
 export const registerSchema = Yup.object({
   name: Yup.string()
     .trim()
     .min(2, 'Имя слишком короткое')
     .max(30, 'Имя слишком длинное')
-    .matches(/^[а-яА-ЯёЁa-zA-Z\s-]+$/, 'Имя может содержать только буквы, пробел и дефис')
+    .matches(nameRules, 'Имя может содержать только буквы, пробел и дефис')
     .required('Обязательное поле'),
   email: Yup.string().email('Неверный email').required('Обязательное поле'),
   password: Yup.string()
-    .matches(passwordRules, 'Пароль должен содержать минимум одну букву, цифру и символ')
+    .min(6, 'Пароль слишком короткий')
+    .matches(passwordRules, 'Пароль должен содержать латинские буквы, цифры и спецсимволы')
     .required('Обязательное поле'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password')], 'Пароли не совпадают')

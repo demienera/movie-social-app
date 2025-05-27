@@ -2,14 +2,17 @@ import type { FC } from 'react';
 import { Formik } from 'formik';
 import { loginSchema, type LoginFormValues } from '@/shared/validation/schemas/loginSchema';
 import { FormTextField } from '@shared/ui/FormTextField';
-import { FormLayout } from '@shared/ui/FormLayout/FormLayout';
+import { FormLayout } from '@shared/ui/FormLayout';
 import { AuthSubmitButton } from '../AuthSubmitButton';
 import { AuthFormLinks } from '../AuthFormLinks';
+import { useNavigation } from '@/shared/hooks/useNavigation';
 import { loginInitialValues } from '../../constants';
 
 export const LoginForm: FC = () => {
+  const { navigateByType } = useNavigation();
   const handleSubmit = (values: typeof loginInitialValues) => {
     console.log('loginForm submitted', values);
+    navigateByType('close');
   };
 
   return (

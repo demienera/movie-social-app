@@ -2,13 +2,15 @@ import type { FC } from 'react';
 import { Formik } from 'formik';
 import { FormTextField } from '@shared/ui/FormTextField';
 import { resetSchema, type ResetFormValues } from '@/shared/validation/schemas/resetSchema';
-import { FormLayout } from '@shared/ui/FormLayout/FormLayout';
+import { FormLayout } from '@shared/ui/FormLayout';
 import { AuthSubmitButton } from '../AuthSubmitButton';
 import { resetInitialValues } from '../../constants';
+import type { ResetRequestFormProps } from './types';
 
-export const ResetForm: FC = () => {
+export const ResetRequestForm: FC<ResetRequestFormProps> = ({ onSuccess }) => {
   const handleSubmit = (values: typeof resetInitialValues) => {
     console.log('resetForm submitted', values);
+    onSuccess(values.email);
   };
 
   return (
@@ -21,12 +23,10 @@ export const ResetForm: FC = () => {
         <FormLayout
           isSubmitting={isSubmitting || !isValid || !dirty}
           submitButton={
-            <AuthSubmitButton text="Сбросить" disabled={isSubmitting || !isValid || !dirty} />
+            <AuthSubmitButton text="Отправить" disabled={isSubmitting || !isValid || !dirty} />
           }
         >
-          <FormTextField name="password" label="Пароль" type="password" required />
-          <FormTextField name="newPassword" label="Новый пароль" type="password" required />
-          <FormTextField name="confirmPassword" label="Повторите пароль" type="password" required />
+          <FormTextField name="email" label="Email" required />
         </FormLayout>
       )}
     </Formik>
