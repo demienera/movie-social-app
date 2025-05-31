@@ -1,16 +1,40 @@
 import type { FC } from 'react';
-import { Formik } from 'formik';
+import { Formik, type FormikHelpers } from 'formik';
+import { useSnackbar } from 'notistack';
 import { FormTextField } from '@shared/ui/FormTextField';
-import { resetSchema, type ResetFormValues } from '@/shared/validation/schemas/resetSchema';
 import { FormLayout } from '@shared/ui/FormLayout';
+import { handleApiError } from '@/shared/utils/handleApiError';
+import { resetSchema, type ResetFormValues } from '@/shared/validation/schemas/resetSchema';
 import { AuthSubmitButton } from '../AuthSubmitButton';
+import { useResetRequestMutation } from '../../api/api';
 import { resetInitialValues } from '../../constants';
 import type { ResetRequestFormProps } from './types';
 
 export const ResetRequestForm: FC<ResetRequestFormProps> = ({ onSuccess }) => {
-  const handleSubmit = (values: typeof resetInitialValues) => {
-    console.log('resetForm submitted', values);
-    onSuccess(values.email);
+  const [resetRequest] = useResetRequestMutation();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleSubmit = async (
+    values: ResetFormValues,
+    { setErrors, setSubmitting }: FormikHelpers<ResetFormValues>
+  ) => {
+    try {
+      await resetRequest(values).unwrap();
+      enqueueSnackbar('Код отправлен на почту', {
+        variant: 'success',
+        autoHideDuration: 3000,
+      });
+      onSuccess?.(values.email);
+    } catch (error) {
+      const message = handleApiError(error, setErrors);
+
+      enqueueSnackbar(message, {
+        variant: 'error',
+        autoHideDuration: 5000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

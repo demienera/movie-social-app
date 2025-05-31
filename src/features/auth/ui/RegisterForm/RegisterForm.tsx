@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Formik } from 'formik';
+import { Formik, type FormikHelpers } from 'formik';
 import { FormTextField } from '@shared/ui/FormTextField';
 import {
   registerSchema,
@@ -8,14 +8,38 @@ import {
 import { FormLayout } from '@shared/ui/FormLayout';
 import { AuthFormLinks } from '../AuthFormLinks';
 import { AuthSubmitButton } from '../AuthSubmitButton';
-import { useNavigation } from '@/shared/hooks/useNavigation';
+import { handleApiError } from '@/shared/utils/handleApiError';
+import { useAuthFormCommon } from '../../hooks/useAuthFormCommon';
 import { registerInitialValues } from '../../constants';
+import { useRegisterMutation } from '../../api/api';
 
 export const RegisterForm: FC = () => {
-  const { navigateByType } = useNavigation();
-  const handleSubmit = (values: typeof registerInitialValues) => {
-    console.log('registerForm submitted', values);
-    navigateByType('close');
+  const [register] = useRegisterMutation();
+  const { navigateByType, enqueueSnackbar, isAuthLoading } = useAuthFormCommon();
+
+  const handleSubmit = async (
+    values: RegisterFormValues,
+    { setErrors, setSubmitting }: FormikHelpers<RegisterFormValues>
+  ) => {
+    try {
+      const { confirmPassword, ...registerData } = values;
+      await register(registerData).unwrap();
+
+      enqueueSnackbar('Регистрация прошла успешно!', {
+        variant: 'success',
+        autoHideDuration: 3000,
+      });
+      navigateByType('close');
+    } catch (error) {
+      const message = handleApiError(error, setErrors);
+
+      enqueueSnackbar(message || 'Ошибка регистрации', {
+        variant: 'error',
+        autoHideDuration: 5000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -26,11 +50,11 @@ export const RegisterForm: FC = () => {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <FormLayout
-          isSubmitting={isSubmitting || !isValid || !dirty}
+          isSubmitting={isAuthLoading || isSubmitting || !isValid || !dirty}
           submitButton={
             <AuthSubmitButton
               text="Зарегистрироваться"
-              disabled={isSubmitting || !isValid || !dirty}
+              disabled={isAuthLoading || isSubmitting || !isValid || !dirty}
             />
           }
           footer={<AuthFormLinks variant="register" />}

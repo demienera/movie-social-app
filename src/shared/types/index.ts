@@ -5,3 +5,11 @@ export type DrawerStateProps = {
   onClose?: () => void;
   toggleDrawer?: () => void;
 };
+
+export type ApiError = {
+  status: number;
+  data: {
+    message: string;
+    errors?: Record<string, string>;
+  };
+};
