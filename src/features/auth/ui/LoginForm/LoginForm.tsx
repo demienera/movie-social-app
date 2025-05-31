@@ -1,18 +1,37 @@
 import type { FC } from 'react';
-import { Formik } from 'formik';
+import { Formik, type FormikHelpers } from 'formik';
 import { loginSchema, type LoginFormValues } from '@/shared/validation/schemas/loginSchema';
 import { FormTextField } from '@shared/ui/FormTextField';
 import { FormLayout } from '@shared/ui/FormLayout';
 import { AuthSubmitButton } from '../AuthSubmitButton';
 import { AuthFormLinks } from '../AuthFormLinks';
-import { useNavigation } from '@/shared/hooks/useNavigation';
+import { handleApiError } from '@/shared/utils/handleApiError';
+import { useLoginMutation, type LoginRequest } from '../../api/api';
+import { useAuthFormCommon } from '../../hooks/useAuthFormCommon';
 import { loginInitialValues } from '../../constants';
 
 export const LoginForm: FC = () => {
-  const { navigateByType } = useNavigation();
-  const handleSubmit = (values: typeof loginInitialValues) => {
-    console.log('loginForm submitted', values);
-    navigateByType('close');
+  const [login] = useLoginMutation();
+  const { navigateByType, enqueueSnackbar, isAuthLoading } = useAuthFormCommon();
+
+  const handleSubmit = async (
+    values: LoginRequest,
+    { setErrors, setSubmitting }: FormikHelpers<LoginFormValues>
+  ) => {
+    try {
+      await login(values).unwrap();
+      enqueueSnackbar('Успешный вход!', { variant: 'success' });
+      navigateByType('close');
+    } catch (error) {
+      const message = handleApiError(error, setErrors);
+
+      enqueueSnackbar(message, {
+        variant: 'error',
+        autoHideDuration: 5000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -23,9 +42,12 @@ export const LoginForm: FC = () => {
     >
       {({ isSubmitting, isValid, dirty }) => (
         <FormLayout
-          isSubmitting={isSubmitting || !isValid || !dirty}
+          isSubmitting={isAuthLoading || isSubmitting || !isValid || !dirty}
           submitButton={
-            <AuthSubmitButton text="Войти" disabled={isSubmitting || !isValid || !dirty} />
+            <AuthSubmitButton
+              text="Войти"
+              disabled={isAuthLoading || isSubmitting || !isValid || !dirty}
+            />
           }
           footer={<AuthFormLinks variant="login" />}
         >

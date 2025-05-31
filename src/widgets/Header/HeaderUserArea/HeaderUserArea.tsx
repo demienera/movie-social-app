@@ -1,10 +1,12 @@
 import { ThemeSwitcher } from '@/features/theme/ui/ThemeSwitcher';
-import { OpenAuthButton } from '@/features/auth/ui/OpenAuthButton';
+import { AuthAvatar } from '@/features/auth/ui/AuthAvatar';
 import { Container } from './styled';
 
-export const HeaderUserArea = () => (
-  <Container>
-    <ThemeSwitcher />
-    <OpenAuthButton />
-  </Container>
-);
+export const HeaderUserArea = () => {
+  return (
+    <Container>
+      <ThemeSwitcher />
+      <AuthAvatar />
+    </Container>
+  );
+};
