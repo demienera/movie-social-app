@@ -19,7 +19,8 @@ export const LoginForm: FC = () => {
     { setErrors, setSubmitting }: FormikHelpers<LoginFormValues>
   ) => {
     try {
-      await login(values).unwrap();
+      const response = await login(values).unwrap();
+      localStorage.setItem('token', response.token);
       enqueueSnackbar('Успешный вход!', { variant: 'success' });
       navigateByType('close');
     } catch (error) {

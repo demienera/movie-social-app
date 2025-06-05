@@ -8,5 +8,12 @@ const authSelector = createSelector([userSelector, isAuthSelector], (user, isAut
 }));
 
 export const useAuth = () => {
-  return useAppSelector(authSelector);
+  const storeAuth = useAppSelector(authSelector);
+  const token = localStorage.getItem('token');
+  const isAuthenticated = Boolean(token) || storeAuth.isAuth;
+  return {
+    ...storeAuth,
+    token,
+    isAuthenticated,
+  };
 };
